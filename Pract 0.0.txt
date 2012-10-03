@@ -1,0 +1,48 @@
+WITH Ada.Text_Io;USE Ada.Text_Io;
+WITH Ada.Foat_Text_Io;USE Ada.Foal_Text_Io;
+
+PROCEDURE
+	Radio_1:CONSTANT Float:=  ;
+	--Radio_1 es el radio menor o interior de la pieza;
+	Radio_2:CONSTANT Float:=  ;
+	--Radio_2 es el radio exterior o mayor de la pieza;
+	Grosor:CONSTANT Float:=  ;
+	--Grosor de la pieza;
+	Densidad:CONSTANT Float:=  ;
+	--Son los gramos por centimetro^3
+	Cantidad:CONSTANT Float:=  ;
+	--Nº de piezas de la que consta la colección;
+	Pi:CONSTANT Float:=3.14159265358979;
+
+
+FUNCTION Area_Circulo (R:Float) RETURN Float Is
+--PRE:R>=0
+--POST:
+	BEGIN
+		RETURN (Pi*R*R);
+	END Area_Circulo;
+
+FUNCTION Volumen_Pieza (R_1,R_2,G:Float) RETURN Float Is
+--PRE:
+--POST:
+	BEGIN
+		RETURN [[(Area_Circulo(R_1)-Area_Circulo(R_2)]*G];
+	END Volumen_Pieza;
+
+FUNCTION Peso_Unidad (R_1,R_2,G,D:Float) RETURN Float Is
+--PRE:
+--POST:
+	BEGIN
+		RETURN (Volumen_Pieza(R_1,R_2,G)*D);
+	END Peso_Unidad;
+
+FUNCION Peso_Total (R_1,R_2,G,D,N:Float) RETURN Float Is
+	BEGIN 
+		RETURN (Peso_Unidad(R_1,R_2,G,D)*float(N));
+	END Peso_Total;
+
+BEGIN
+	Put("El peso total de la collecion de piezas es de:");
+	Put(Peso_total(R_1,R_2,G,D,N));
+	Put("gramos");
+END Programa_Cilindros;
